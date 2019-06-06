@@ -1,0 +1,45 @@
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+td, th {
+    width: 16.6666666667%;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+mat-card {
+    width: 90%;
+    margin: 10px auto;
+}
+
+@media(max-width: 600px) {
+    mat-card {
+        width: fit-content;
+    }
+}
+
+h1 {
+    text-align: center;
+}
+
+tr {
+    cursor: pointer;
+}
+
+.product-list-container button {
+    margin-bottom: 10px;
+}
+
+.actionButtonsGroup button {
+    margin: 5px;
+}
+
+table {
+    box-shadow: none !important;
+}

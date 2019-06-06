@@ -1,0 +1,29 @@
+<div class="add-product-container">
+  <h1>Add Product</h1>
+  <mat-card class="stateCard" *ngIf="addedState">Your Product has been successfully added</mat-card>
+  <form [formGroup]="addProductForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input matInput placeholder="SKU" formControlName="sku" type="number" required min="1000" minlength="4"/>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Name" formControlName="name" required minlength="5" />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Image URL" formControlName="image" type="url" required/>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Categories" formControlName="categories" required/>
+      <mat-hint>seperate with commas</mat-hint>
+    </mat-form-field>
+    <mat-form-field>
+      <span matPrefix>$ &nbsp;</span>
+      <input matInput placeholder="Price" formControlName="price" type="number" required />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Date" formControlName="date" type="date" required />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Add</button>
+    
+  </form>
+</div>

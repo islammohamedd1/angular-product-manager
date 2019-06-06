@@ -1,0 +1,13 @@
+.add-product-container mat-form-field {
+    width: 100%;
+}
+
+.add-product-container form {
+    width:80%;
+}
+
+.stateCard {
+    background-color: #673ab7;
+    color: #ffffff;
+    margin-bottom: 10px;
+}

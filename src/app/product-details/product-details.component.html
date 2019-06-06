@@ -1,0 +1,20 @@
+<div class="product-details-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{data.name}}</mat-card-title>
+      <mat-card-subtitle>${{data.price}}</mat-card-subtitle>  
+    </mat-card-header>
+    <div class="image-container">
+      <img mat-card-image [src]="data.image" />
+    </div>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item><b>SKU:</b> &nbsp;{{data.sku}}</mat-list-item>
+        <mat-list-item><b>Name:</b> &nbsp;{{data.name}}</mat-list-item>
+        <mat-list-item><b>Price:</b> &nbsp;${{data.price}}</mat-list-item>
+        <mat-list-item><b>Categories:</b> &nbsp;{{data.categories}}</mat-list-item>
+        <mat-list-item><b>Date:</b> &nbsp;{{data.date.getDate()}} / {{data.date.getMonth()}} / {{data.date.getFullYear()}}</mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>
