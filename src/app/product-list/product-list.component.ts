@@ -41,8 +41,12 @@ export class ProductListComponent implements OnInit {
     this.dataSource.data = this.products;
   }
 
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  applyFilter(filterValue: string | Date) {
+    if (typeof filterValue == "string") {
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+    } else {
+      this.dataSource.filter = filterValue.toDateString();
+    }
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
