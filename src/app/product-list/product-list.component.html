@@ -7,16 +7,16 @@
     </div>
 
     <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      <input matInput [(ngModel)]="textFieldFilter" (keyup)="applyFilter()" placeholder="Filter">
     </mat-form-field>
     
     <mat-form-field class="date-picker">
-      <input matInput [matDatepicker]="datePicker" placeholder="Choose a date" (dateInput)="applyFilter($event.value)">
+      <input matInput [(ngModel)]="dateFieldFilter" [matDatepicker]="datePicker" placeholder="Choose a date" (dateInput)="applyFilter()">
       <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
       <mat-datepicker #datePicker></mat-datepicker>
     </mat-form-field>
 
-    <button class="clear-btn" mat-raised-button (click)="applyFilter('')">Clear filters</button>
+    <button class="clear-btn" mat-raised-button (click)="clearFilters()">Clear filters</button>
   
     <table mat-table [dataSource]="dataSource" matSort>
   

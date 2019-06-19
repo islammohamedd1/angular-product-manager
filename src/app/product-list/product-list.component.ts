@@ -20,6 +20,9 @@ export class ProductListComponent implements OnInit {
 
   products: Product[];
 
+  textFieldFilter: string;
+  dateFieldFilter: string;
+
   displayedColumns: string[] = ['sku', 'name', 'categories', 'price', 'date', 'actions'];
   dataSource: MatTableDataSource<any>;
 
@@ -27,6 +30,8 @@ export class ProductListComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(public dialog: MatDialog, private productsService: ProductService) {
+    this.textFieldFilter = '';
+    this.dateFieldFilter = '';
     this.dataSource = new MatTableDataSource();
     this.getProducts();
   }
@@ -34,6 +39,8 @@ export class ProductListComponent implements OnInit {
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+
+    this.dataSource.filterPredicate = this.customFilter;
   }
 
   getProducts(): void {
@@ -41,12 +48,32 @@ export class ProductListComponent implements OnInit {
     this.dataSource.data = this.products;
   }
 
-  applyFilter(filterValue: string | Date) {
-    if (typeof filterValue == "string") {
-      this.dataSource.filter = filterValue.trim().toLowerCase();
-    } else {
-      this.dataSource.filter = filterValue.toDateString();
+  customFilter(data: Product, filter: string) {
+    let jsonFilter = JSON.parse(filter);
+    let filterRegex = new RegExp(jsonFilter.text, "ig");
+    if (filterRegex.test(data.sku.toString()) || filterRegex.test(data.name) ||
+      filterRegex.test(data.categories.toString()) || filterRegex.test(data.price.toString())) {
+        if (jsonFilter.date) {
+          jsonFilter.date = new Date(jsonFilter.date);
+          if (jsonFilter.date.toDateString() === data.date.toDateString()) {
+            return true;
+          } else {
+            return false;
+          }
+        } else {
+          return true;
+        }
     }
+    return false;
+  }
+
+  applyFilter() {
+    const filter = {
+      text: this.textFieldFilter,
+      date: new Date(this.dateFieldFilter)
+    }
+    this.dataSource.filter = JSON.stringify(filter);
+
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
@@ -62,18 +89,24 @@ export class ProductListComponent implements OnInit {
   }
 
   updateClicked(product: Product): void {
-    const dialogRef = this.dialog.open(UpdateProductComponent, {minWidth: '60%', data: {product}});
+    const dialogRef = this.dialog.open(UpdateProductComponent, {minWidth: '60%', data: { product }});
     dialogRef.afterClosed().subscribe(r => {this.getProducts()});
   }
 
   deleteClicked(sku: Number): void {
-    const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {minWidth: '60%', data: {sku}});
+    const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {minWidth: '60%', data: { sku }});
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
         this.productsService.deleteProduct(sku);
         this.getProducts();
       }
     });
+  }
+
+  clearFilters(): void {
+    this.textFieldFilter = "";
+    this.dateFieldFilter = "";
+    this.applyFilter();
   }
 
 }

@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductListComponent } from './product-list/product-list.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { MatPaginatorModule, MatSortModule, MatTableModule, MatFormFieldModule,
   MatInputModule, MatCardModule, MatDialogModule, MatButtonModule, MatListModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
@@ -26,9 +26,10 @@ import { ConfirmDeleteDialogComponent } from './confirm-delete-dialog/confirm-de
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    FormsModule,
     MatPaginatorModule, MatSortModule, MatTableModule, MatFormFieldModule,
     MatInputModule, MatCardModule, MatDialogModule, MatButtonModule,
-    MatListModule, MatDatepickerModule, MatNativeDateModule
+    MatListModule, MatDatepickerModule, MatNativeDateModule,
   ],
   entryComponents: [ProductDetailsComponent, AddProductComponent, UpdateProductComponent, ConfirmDeleteDialogComponent],
   providers: [],

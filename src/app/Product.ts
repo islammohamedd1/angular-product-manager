@@ -1,8 +1,8 @@
 export class Product {
     sku: Number;
-    name: String;
-    image: String; // image path
-    categories: String[];
+    name: string;
+    image: string; // image path
+    categories: string[];
     price: Number;
     date: Date;
 }
