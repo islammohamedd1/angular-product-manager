@@ -13,7 +13,7 @@
         <mat-list-item><b>Name:</b> &nbsp;{{data.name}}</mat-list-item>
         <mat-list-item><b>Price:</b> &nbsp;${{data.price}}</mat-list-item>
         <mat-list-item><b>Categories:</b> &nbsp;{{data.categories}}</mat-list-item>
-        <mat-list-item><b>Date:</b> &nbsp;{{data.date.getDate()}} / {{data.date.getMonth()}} / {{data.date.getFullYear()}}</mat-list-item>
+        <mat-list-item><b>Date:</b> &nbsp;{{data.date.toDateString()}}</mat-list-item>
       </mat-list>
     </mat-card-content>
   </mat-card>
